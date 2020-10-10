@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="16dp"
+    app:flexDirection="column"
+    tools:context=".MainActivity">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="stretch"
+        app:alignItems="center"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pebbles"
+            android:textColor="#fff"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_flexBasisPercent="50%" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:alignContent="stretch"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_end"
+            app:layout_flexBasisPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@color/windowBackground"
+                android:clickable="true"
+                android:onClick="wow"
+                android:src="@drawable/ic_outline_info_24" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@color/windowBackground"
+                android:src="@drawable/ic_outline_notifications_24" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/windowBackground"
+                android:src="@drawable/ic_outline_settings_24" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_flexBasisPercent="16%">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:text='"The key is not in spending time, but in investing it."'
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="-- Stephen R. Covey"
+            android:textAlignment="viewEnd"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quote" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <FrameLayout
+        android:id="@+id/iuBox"
+        android:transitionName="iuBoxT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_frame_bg"
+        android:clickable="true"
+        app:layout_flexBasisPercent="16%">
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_gravity="center_vertical"/>-->
+        <FrameLayout
+            android:id="@+id/iuProg"
+            android:layout_width="786px"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_frame_bg"
+            android:backgroundTint="#CD1C22" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/iuText"
+            android:transitionName="iuTextT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:text="Important &amp; Urgent"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/iuStat"
+            android:transitionName="iuStatT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="20dp"
+            android:text="4 of 5 Completed"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/niuBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_frame_bg"
+        app:layout_flexBasisPercent="16%">
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_gravity="center_vertical"/>-->
+        <FrameLayout
+            android:layout_width="570px"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_frame_bg"
+            android:backgroundTint="#FFB017" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/niuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:text="Not Important but Urgent"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/niuStat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="20dp"
+            android:text="3 of 5 Completed"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/inuBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_frame_bg"
+        app:layout_flexBasisPercent="16%">
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_gravity="center_vertical"/>-->
+        <FrameLayout
+            android:layout_width="970px"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_frame_bg"
+            android:backgroundTint="#44AB96" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/inuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:text="Important but Not Urgent"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/inuStat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="20dp"
+            android:text="5 of 5 Completed"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ninuBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_frame_bg"
+        app:layout_flexBasisPercent="16%">
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_gravity="center_vertical"/>-->
+        <FrameLayout
+            android:layout_width="393px"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_frame_bg"
+            android:backgroundTint="#DA774A" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ninuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:text="Not Important &amp; Not Urgent"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ninuStat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="20dp"
+            android:text="2 of 5 Completed"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+
+    </FrameLayout>
+
+
+</com.google.android.flexbox.FlexboxLayout>

@@ -66,7 +66,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     public void setTasks(List<ToDoModel> todoList){
         this.todoList = todoList;
-        Toast.makeText(activity, "setTask() Called!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(activity, "setTask() Called!", Toast.LENGTH_SHORT).show();
         notifyDataSetChanged();
     }
 

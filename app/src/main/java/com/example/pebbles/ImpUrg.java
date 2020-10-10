@@ -49,14 +49,14 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
-        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
-
         taskList = new ArrayList<>();
 
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         tasksAdapter = new ToDoAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         //Starting Game Dummy Inputs
 //        ToDoModel task = new ToDoModel();

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="20dp">
 
 <!--    <com.google.android.material.textfield.TextInputLayout-->
 <!--        android:id="@+id/newTaskText"-->
@@ -12,6 +13,7 @@
             android:id="@+id/newTaskText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Enter your task"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 

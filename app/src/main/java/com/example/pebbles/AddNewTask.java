@@ -77,7 +77,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     newTaskSaveButton.setTextColor(Color.GRAY);
                 }else {
                     newTaskSaveButton.setEnabled((true));
-                    newTaskSaveButton.setTextColor(Color.RED);
+                    newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 }
             }
 

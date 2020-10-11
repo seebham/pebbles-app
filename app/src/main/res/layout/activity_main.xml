@@ -117,9 +117,11 @@
         <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
         <!--            android:textColor="#fff"-->
         <!--            android:layout_gravity="center_vertical"/>-->
+
+        <!--            android:layout_width="786px"-->
         <FrameLayout
             android:id="@+id/iuProg"
-            android:layout_width="786px"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
             android:backgroundTint="#CD1C22" />
@@ -165,6 +167,7 @@
         <!--            android:textColor="#fff"-->
         <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
+            android:id="@+id/niuProg"
             android:layout_width="570px"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
@@ -209,6 +212,7 @@
         <!--            android:textColor="#fff"-->
         <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
+            android:id="@+id/inuProg"
             android:layout_width="970px"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
@@ -253,6 +257,7 @@
         <!--            android:textColor="#fff"-->
         <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
+            android:id="@+id/ninuProg"
             android:layout_width="393px"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"

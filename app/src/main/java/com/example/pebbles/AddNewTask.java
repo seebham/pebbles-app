@@ -93,13 +93,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 String text = newTaskText.getText().toString();
                 if(finalIsUpdate){
-                    db.updateTask(bundle.getInt("id"), text);
+                    db.updateTask(bundle.getInt("id"), text, "iu");
                 }
                 else {
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
                     task.setStatus(0);
-                    db.insertTask(task);
+                    db.insertTask(task, "iu");
                 }
                 dismiss(); //Bottom sheet dismiss
             }

@@ -52,7 +52,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
         taskList = new ArrayList<>();
 
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        tasksAdapter = new ToDoAdapter(db, this);
+        tasksAdapter = new ToDoAdapter(db, this, "iu");
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
@@ -72,7 +72,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
 //
 //        tasksAdapter.setTasks(taskList);
 
-        taskList = db.getAllTasks();
+        taskList = db.getAllTasks("iuTable");
         System.out.println("kaand:" + taskList);
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
@@ -97,7 +97,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        taskList = db.getAllTasks();
+        taskList = db.getAllTasks("iuTable");
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();

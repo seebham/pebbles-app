@@ -2,7 +2,6 @@ package com.example.pebbles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.ItemTouchHelper.Callback;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,15 +13,13 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.pebbles.Adapter.ToDoAdapter;
+import com.example.pebbles.Adapters.IUAdapter;
 import com.example.pebbles.Model.ToDoModel;
 import com.example.pebbles.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
     private FrameLayout miuBoxD;
     private TextView miuTextD, miuStatD;
     private RecyclerView tasksRecyclerView;
-    private ToDoAdapter tasksAdapter;
+    private IUAdapter tasksAdapter;
     private List<ToDoModel> taskList;
     private DatabaseHandler db;
     private Button miuAddTaskBtn;
@@ -52,7 +49,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
         taskList = new ArrayList<>();
 
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        tasksAdapter = new ToDoAdapter(db, this, "iu");
+        tasksAdapter = new IUAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
@@ -80,7 +77,7 @@ public class ImpUrg extends AppCompatActivity implements DialogCloseListener{
         miuAddTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+                AddNewTask.newInstance("iu").show(getSupportFragmentManager(), AddNewTask.TAG);
             }
         });
     }

@@ -27,9 +27,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
     private EditText newTaskText;
     private Button newTaskSaveButton;
     private DatabaseHandler db;
+    private String tableName;
 
-    public static AddNewTask newInstance(){
-        return new AddNewTask();
+    public AddNewTask(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public static AddNewTask newInstance(String tableName){
+        return new AddNewTask(tableName);
     }
 
     @Override
@@ -93,13 +98,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 String text = newTaskText.getText().toString();
                 if(finalIsUpdate){
-                    db.updateTask(bundle.getInt("id"), text, "iu");
+                    db.updateTask(bundle.getInt("id"), text, tableName);
                 }
                 else {
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
                     task.setStatus(0);
-                    db.insertTask(task, "iu");
+                    db.insertTask(task, tableName);
                 }
                 dismiss(); //Bottom sheet dismiss
             }

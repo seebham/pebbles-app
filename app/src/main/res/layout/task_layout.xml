@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             tool:text="Creating snippets of a YouTube Video!"
             android:paddingStart="8dp"
-            android:buttonTint="#CD1C22"/>
+            android:buttonTint="@color/colorPrimary"/>
 
     </RelativeLayout>
 

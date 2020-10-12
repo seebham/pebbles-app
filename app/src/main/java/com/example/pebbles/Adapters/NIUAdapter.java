@@ -1,36 +1,31 @@
-package com.example.pebbles.Adapter;
+package com.example.pebbles.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pebbles.AddNewTask;
-import com.example.pebbles.ImpUrg;
 import com.example.pebbles.Model.ToDoModel;
+import com.example.pebbles.NotImgUrg;
 import com.example.pebbles.R;
 import com.example.pebbles.Utils.DatabaseHandler;
 
 import java.util.List;
 
-public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
+public class NIUAdapter extends RecyclerView.Adapter<NIUAdapter.ViewHolder> {
     private List<ToDoModel> todoList;
-    private ImpUrg activity;
+    private NotImgUrg activity;
     private DatabaseHandler db;
-    private String tableName;
+    private static final String tableName = "niu";
 
-    public ToDoAdapter(DatabaseHandler db, ImpUrg activity, String tableName) {
+    public NIUAdapter(DatabaseHandler db, NotImgUrg activity) {
         this.db = db;
         this.activity = activity;
-        this.tableName = tableName;
     }
 
     @NonNull
@@ -40,9 +35,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return new ViewHolder(itemView);
     }
 
-
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         db.openDatabase();
         final ToDoModel item = todoList.get(position);
         holder.task.setText(item.getTask());
@@ -83,16 +77,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         todoList.remove(position);
         notifyItemRemoved(position);
     }
-
-//    public void editItem(int position){
-//        ToDoModel item = todoList.get(position);
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("id", item.getId());
-//        bundle.putString("task", item.getTask());
-//        AddNewTask fragment = new AddNewTask();
-//        fragment.setArguments(bundle);
-//        fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
-//    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;

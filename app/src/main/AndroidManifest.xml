@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotImpNotUrg"></activity>
-        <activity android:name=".ImpNotUrg" />
-        <activity android:name=".NotImgUrg" />
-        <activity android:name=".ImpUrg" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".NotImpNotUrg" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".ImpNotUrg" android:screenOrientation="portrait" />
+        <activity android:name=".NotImgUrg" android:screenOrientation="portrait" />
+        <activity android:name=".ImpUrg" android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

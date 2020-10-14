@@ -42,7 +42,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@color/windowBackground"
                 android:clickable="true"
-                android:onClick="wow"
+                android:onClick="info"
                 android:src="@drawable/ic_outline_info_24" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -111,14 +111,6 @@
         android:background="@drawable/rounded_frame_bg"
         android:clickable="true"
         app:layout_flexBasisPercent="16%">
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_gravity="center_vertical"/>-->
-
-        <!--            android:layout_width="786px"-->
         <FrameLayout
             android:id="@+id/iuProg"
             android:layout_width="match_parent"
@@ -146,7 +138,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="20dp"
-            android:text="4 of 5 Completed"
+            android:text="No pebbles here"
             android:textColor="#fff"
             android:textSize="14sp" />
 
@@ -160,15 +152,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_frame_bg"
         app:layout_flexBasisPercent="16%">
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
             android:id="@+id/niuProg"
-            android:layout_width="570px"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
             android:backgroundTint="#FFB017" />
@@ -191,7 +177,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="20dp"
-            android:text="3 of 5 Completed"
+            android:text="No pebbles here"
             android:textColor="#fff"
             android:textSize="14sp" />
 
@@ -205,15 +191,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_frame_bg"
         app:layout_flexBasisPercent="16%">
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
             android:id="@+id/inuProg"
-            android:layout_width="970px"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
             android:backgroundTint="#44AB96" />
@@ -236,7 +216,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="20dp"
-            android:text="5 of 5 Completed"
+            android:text="No pebbles here"
             android:textColor="#fff"
             android:textSize="14sp" />
 
@@ -250,15 +230,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_frame_bg"
         app:layout_flexBasisPercent="16%">
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="To make a new Custom component for the cards and set them dynamically!"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_gravity="center_vertical"/>-->
         <FrameLayout
             android:id="@+id/ninuProg"
-            android:layout_width="393px"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_frame_bg"
             android:backgroundTint="#DA774A" />
@@ -281,7 +255,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="20dp"
-            android:text="2 of 5 Completed"
+            android:text="No pebbles here"
             android:textColor="#fff"
             android:textSize="14sp" />
 

@@ -74,7 +74,7 @@ public class IUAdapter extends RecyclerView.Adapter<IUAdapter.ViewHolder> {
 
     public void deleteItem(int position){
         ToDoModel item = todoList.get(position);
-        db.deleteTask(item.getId(), tableName);
+        db.deleteTask(item.getId(), item.getStatus(), tableName);
         todoList.remove(position);
         notifyItemRemoved(position);
     }

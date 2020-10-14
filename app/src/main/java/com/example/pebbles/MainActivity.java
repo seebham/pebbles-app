@@ -4,22 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout miuBox, mniuBox, minuBox, mninuBox, miuProg, mniuProg, minuProg, mninuProg;
+    private TextView miuStat, mniuStat, minuStat, mninuStat;
+
+    SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
+    public static final String mypreference = "mypref";
+    public static final String iuCount = "iuCount";
+    public static final String niuCount = "niuCount";
+    public static final String inuCount = "inuCount";
+    public static final String ninuCount = "ninuCount";
+    public static final String iuTotal = "iuTotal";
+    public static final String niuTotal = "niuTotal";
+    public static final String inuTotal = "inuTotal";
+    public static final String ninuTotal = "ninuTotal";
+    public static final String iuPercent = "iuPrecent";
+    public static final String niuPercent = "niuPrecent";
+    public static final String inuPercent = "inuPrecent";
+    public static final String ninuPercent = "ninuPrecent";
+    public static final String fullBarWidth = "fullBarWidth";
 
     private int boxFullWidth, boxHeight;
 
@@ -38,16 +57,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         minuProg = findViewById(R.id.inuProg);
         mninuProg = findViewById(R.id.ninuProg);
 
+        miuStat = findViewById(R.id.iuStat);
+        mniuStat = findViewById(R.id.niuStat);
+        minuStat = findViewById(R.id.inuStat);
+        mninuStat = findViewById(R.id.ninuStat);
+
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+
+        if(!sharedpreferences.contains(fullBarWidth)){
+            ViewTreeObserver observer= miuProg.getViewTreeObserver();
+            observer.addOnGlobalLayoutListener(
+                    new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            Log.d("Kand", "Width: " + miuProg.getWidth());
+
+                            editor.putInt(fullBarWidth, miuProg.getWidth());
+                            editor.apply();
+                            Log.d("kand", String.valueOf(sharedpreferences.getInt(fullBarWidth, 404)));
+                            miuProg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    });
+        } else {
+            setBars();
+        }
 
         SimpleAnimation();
-//        miuProg.setLayoutParams(new FrameLayout.LayoutParams(miuProg.getWidth()/2,miuProg.getHeight()));
-
-
 
         miuBox.setOnClickListener(this);
         mniuBox.setOnClickListener(this);
         minuBox.setOnClickListener(this);
         mninuBox.setOnClickListener(this);
+
+        sharedPrefChangedListen();
     }
 
     private void SimpleAnimation(){
@@ -89,26 +133,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return inFromLeft;
     }
 
-    public void wow(View view){
-        //Box Full Width
-        boxFullWidth = miuProg.getWidth();
-        boxHeight = miuBox.getHeight();
-        miuProg.setLayoutParams(new FrameLayout.LayoutParams(progressWidth(4, 5, boxFullWidth), boxHeight));
-
-//        AnimatorSet set = new AnimatorSet();
-//        // Using property animation
-//        ObjectAnimator animation = ObjectAnimator.ofFloat(miuProg,
-//                "translationY",
-//                100f);
-//        animation.setDuration(2000);
-//        set.play(animation);
-//        set.start();
-
-//        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show();
+    public void info(View view){
+        System.out.println("Kand" + miuBox.getWidth());
     }
 
-    public int progressWidth(int completedTasksCount, float totalTasksCount, int fullWidth){
-        return (int) ((completedTasksCount / totalTasksCount * 100) * fullWidth / 100);
+
+    public void setStats(String count, String totalCount, TextView t, FrameLayout frameBox, String percent){
+        Log.d("kand in setStats", String.valueOf(sharedpreferences.getInt(fullBarWidth, 404)));
+        boxFullWidth = sharedpreferences.getInt(fullBarWidth, 0);
+        //boxFullWidth = 972;
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) frameBox.getLayoutParams();
+
+        boolean dataAvailable = false;
+        if(sharedpreferences.contains(percent)){
+            if(sharedpreferences.contains(totalCount)){
+                if(sharedpreferences.getInt(totalCount, 0) != 0) {
+                    dataAvailable = true;
+                    t.setText(sharedpreferences.getInt(count, 0) + " of " + sharedpreferences.getInt(totalCount, 0) + " Completed");
+                    params.width = sharedpreferences.getInt(percent, boxFullWidth);
+                }
+            }
+        }
+        if(!dataAvailable){
+            t.setText("No pebbles here");
+            params.width = boxFullWidth;
+        }
+        frameBox.setLayoutParams(params);
+        frameBox.requestLayout();
+    }
+
+    private void setBars(){
+        setStats(iuCount, iuTotal, miuStat, miuProg, iuPercent);
+        setStats(niuCount, niuTotal, mniuStat, mniuProg, niuPercent);
+        setStats(inuCount, inuTotal, minuStat, minuProg, inuPercent);
+        setStats(ninuCount, ninuTotal, mninuStat, mninuProg, ninuPercent);
+    }
+
+    private void sharedPrefChangedListen(){
+        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                System.out.println("kand: MainActivity - " + key);
+                switch (key){
+                    case "iuPercent":
+                        setStats(iuCount, iuTotal, miuStat, miuProg, iuPercent);
+                        break;
+                    case "niuPercent":
+                        setStats(niuCount, niuTotal, mniuStat, mniuProg, niuPercent);
+                        break;
+                    case "inuPercent":
+                        setStats(inuCount, inuTotal, minuStat, minuProg, inuPercent);
+                        break;
+                    case "ninuPercent":
+                        setStats(ninuCount, ninuTotal, mninuStat, mninuProg, ninuPercent);
+                        break;
+                }
+            }
+        };
+        sharedpreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
     @Override
@@ -148,5 +230,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         SimpleAnimation();
+        if(sharedpreferences.contains(fullBarWidth)) setBars();
     }
 }

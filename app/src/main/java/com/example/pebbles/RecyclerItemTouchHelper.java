@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -137,16 +136,14 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
                     background = new ColorDrawable(ContextCompat.getColor(iuAdapter.getContext(), R.color.colorPrimaryDark));
                     break;
                 case "niu":
-                    System.out.println("kand: Im here!");
                     icon = ContextCompat.getDrawable(niuAdapter.getContext(), R.drawable.ic_baseline_edit);
                     background = new ColorDrawable(ContextCompat.getColor(niuAdapter.getContext(), R.color.colorPrimaryDark));
                     break;
                 case "inu":
-                    System.out.println("kand: Im here!");
                     icon = ContextCompat.getDrawable(inuAdapter.getContext(), R.drawable.ic_baseline_edit);
                     background = new ColorDrawable(ContextCompat.getColor(inuAdapter.getContext(), R.color.colorPrimaryDark));
-                    break;case "ninu":
-                    System.out.println("kand: Im here!");
+                    break;
+                case "ninu":
                     icon = ContextCompat.getDrawable(ninuAdapter.getContext(), R.drawable.ic_baseline_edit);
                     background = new ColorDrawable(ContextCompat.getColor(ninuAdapter.getContext(), R.color.colorPrimaryDark));
                     break;

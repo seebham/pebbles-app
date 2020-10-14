@@ -75,11 +75,8 @@
             android:id="@+id/niuAddTaskBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="115dp"
+            android:layout_gravity="center|bottom"
             android:background="@drawable/rounded_frame_bg"
-            android:paddingHorizontal="20dp"
-            android:layout_marginHorizontal="100dp"
             android:layout_marginBottom="20dp"
             android:text="Add Task"
             app:icon="@drawable/ic_outline_add_24" />

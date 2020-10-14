@@ -1,13 +1,17 @@
 package com.example.pebbles;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         miuBox = findViewById(R.id.iuBox);
         mniuBox = findViewById(R.id.niuBox);
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         SimpleAnimation();
+//        ComplexAnimation();
 
         miuBox.setOnClickListener(this);
         mniuBox.setOnClickListener(this);
@@ -134,7 +140,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void info(View view){
-        System.out.println("Kand" + miuBox.getWidth());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("What are Pebbles?");
+        builder.setMessage("Pebbles is a simple yet productive ToDo List App which help users manage their time using the technique 'Time Management Matrix' proposed by Stephen Covey!");
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.ic_outline_info_24);
+        builder.setPositiveButton("View Code", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String url = "https://github.com/seebham/pebbles-app";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog infoDialog = builder.create();
+        infoDialog.show();
     }
 
 
@@ -230,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         SimpleAnimation();
+//        ComplexAnimation();
         if(sharedpreferences.contains(fullBarWidth)) setBars();
     }
 }

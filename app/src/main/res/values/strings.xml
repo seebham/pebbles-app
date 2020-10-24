@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pebbles</string>
+    <string name="addTasks">Add New Tasks!</string>
 </resources>

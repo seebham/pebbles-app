@@ -88,9 +88,10 @@ public class ImpNotUrg extends AppCompatActivity implements DialogCloseListener 
     private void setStats(){
         if(sharedpreferences.contains(inuCount) || sharedpreferences.contains(inuTotal)){
             System.out.println("kand: niu -  setStats, Percent = " + sharedpreferences.getInt("niuPercent", 404));
-            minuStatD.setText(sharedpreferences.getInt(inuCount, 0) + " of " + sharedpreferences.getInt(inuTotal, 0) + " completed");
+            if(sharedpreferences.getInt(inuTotal, 0) > 0) minuStatD.setText(sharedpreferences.getInt(inuCount, 0) + " of " + sharedpreferences.getInt(inuTotal, 0) + " completed");
+            else minuStatD.setText(R.string.addTasks);
         } else {
-            minuStatD.setText("Add New Tasks!");
+            minuStatD.setText(R.string.addTasks);
         }
     }
 

@@ -87,9 +87,10 @@ public class NotImgUrg extends AppCompatActivity implements DialogCloseListener 
     private void setStats(){
         if(sharedpreferences.contains(niuCount) || sharedpreferences.contains(niuTotal)){
             System.out.println("kand: niu -  setStats, Percent = " + sharedpreferences.getInt("niuPercent", 404));
-            mniuStatD.setText(sharedpreferences.getInt(niuCount, 0) + " of " + sharedpreferences.getInt(niuTotal, 0) + " completed");
+            if(sharedpreferences.getInt(niuTotal, 0) > 0) mniuStatD.setText(sharedpreferences.getInt(niuCount, 0) + " of " + sharedpreferences.getInt(niuTotal, 0) + " completed");
+            else mniuStatD.setText(R.string.addTasks);
         } else {
-            mniuStatD.setText("Add New Tasks!");
+            mniuStatD.setText(R.string.addTasks);
         }
     }
 

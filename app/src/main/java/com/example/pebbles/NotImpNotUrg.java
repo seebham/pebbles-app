@@ -87,9 +87,10 @@ public class NotImpNotUrg extends AppCompatActivity implements DialogCloseListen
     private void setStats(){
         if(sharedpreferences.contains(ninuCount) || sharedpreferences.contains(ninuTotal)){
             System.out.println("kand: ninu -  setStats, Percent = " + sharedpreferences.getInt("ninuPercent", 404));
-            mninuStatD.setText(sharedpreferences.getInt(ninuCount, 0) + " of " + sharedpreferences.getInt(ninuTotal, 0) + " completed");
+            if(sharedpreferences.getInt(ninuTotal, 0) > 0) mninuStatD.setText(sharedpreferences.getInt(ninuCount, 0) + " of " + sharedpreferences.getInt(ninuTotal, 0) + " completed");
+            else mninuStatD.setText(R.string.addTasks);
         } else {
-            mninuStatD.setText("Add New Tasks!");
+            mninuStatD.setText(R.string.addTasks);
         }
     }
 

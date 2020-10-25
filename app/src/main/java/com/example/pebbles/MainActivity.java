@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -23,9 +28,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout miuBox, mniuBox, minuBox, mninuBox, miuProg, mniuProg, minuProg, mninuProg;
     private TextView miuStat, mniuStat, minuStat, mninuStat;
+
+    private String channelID = "notifyPebbles";
 
     SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
@@ -51,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        createNotificationChannel();
 
         miuBox = findViewById(R.id.iuBox);
         mniuBox = findViewById(R.id.niuBox);
@@ -98,6 +109,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mninuBox.setOnClickListener(this);
 
         sharedPrefChangedListen();
+        setAlarm();
+    }
+
+    private void setAlarm(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 25);
+        calendar.set(Calendar.SECOND, 0);
+
+        if (calendar.getTime().compareTo(new Date()) < 0)
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
+        if(am != null) am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     private void SimpleAnimation(){
@@ -189,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         frameBox.requestLayout();
     }
 
+
     private void setBars(){
         setStats(iuCount, iuTotal, miuStat, miuProg, iuPercent);
         setStats(niuCount, niuTotal, mniuStat, mniuProg, niuPercent);
@@ -250,6 +278,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
                 startActivity(i, options.toBundle());
                 break;
+        }
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "MOScreens";
+            String description = "MOScreen notification channel";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(channelID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 

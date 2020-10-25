@@ -49,7 +49,6 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -61,16 +60,26 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<center>
+ <img src="/pebbles1.png" alt="Pebbles Screenshot" height="500px"/>
+  &nbsp;
+ <img src="/pebbles2.png" alt="Pebbles Screenshot" height="500px"/>
+</center>
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+  The dictionary meaning of "pebbles" is 'small rounded stones' but, here pebbles means stones of all sizes which represents different tasks/duties/assignments and hobbies, that we want to fit in and plan in our daily routine. 'Pebbles' app is made for implementing the Time Management Matrix technique proposed by Dr Stephen Covey in any a most efficent and convenient way possible.
+  The name 'pebble' came into my mind from the famous represetation of Time management using Stones, pebbles and sand. 
+  
+  Below are the videos for understanding both the concepts.
+  </br>
+  <a href="https://www.youtube.com/watch?v=9XL2oRoAii8" target="_blank"><img src="https://img.youtube.com/vi/9XL2oRoAii8/0.jpg" width="40%" alt="The Time Management Matrix"></a>
+  <a href="https://www.youtube.com/watch?v=cMBM7K_yHog" target="_blank"><img src="https://img.youtube.com/vi/cMBM7K_yHog/0.jpg" width="40%" alt="The jar of Life"></a>
+</br>
+Here's why I developed this app:
+* I read "The 7 habits of Highly Effective People" by Stephen Covey, which gave this Time Management Matrix technique to plan our weeks and I wanted to inculcate it in my routine
+* At first I tried sketching it on a notebook but it was not that appealing and convenient for me
+* And in this new normal, checking our smartphone is the first thing we do in the morning. Thus, I decided to give it try and tried developing this app! :smile:
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
+Of course, there many more features need to be added. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
@@ -93,14 +102,6 @@ Clone the repo and play
 ```sh
 git clone https://github.com/seebham/pebbles-app.git
 ```
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 
 
 <!-- ROADMAP -->

@@ -60,11 +60,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<center>
- <img src="/pebbles1.png" alt="Pebbles Screenshot" height="500px"/>
-  &nbsp;
- <img src="/pebbles2.png" alt="Pebbles Screenshot" height="500px"/>
-</center>
+
+ <center><p><img src="/pebbles1.png" alt="Pebbles Screenshot" height="500px"/> <img src="/pebbles2.png" alt="Pebbles Screenshot" height="500px"/></p></center>
+
 
   The dictionary meaning of "pebbles" is 'small rounded stones' but, here pebbles means stones of all sizes which represents different tasks/duties/assignments and hobbies, that we want to fit in and plan in our daily routine. 'Pebbles' app is made for implementing the Time Management Matrix technique proposed by Dr Stephen Covey in any a most efficent and convenient way possible.
   The name 'pebble' came into my mind from the famous represetation of Time management using Stones, pebbles and sand. 

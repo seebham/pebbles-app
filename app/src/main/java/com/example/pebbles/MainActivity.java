@@ -27,6 +27,11 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String inuPercent = "inuPrecent";
     public static final String ninuPercent = "ninuPrecent";
     public static final String fullBarWidth = "fullBarWidth";
+    public static final String currentNotificationHour = "currentNotificationHour";
+    public static final String currentNotificationMin = "currentNotificationMin";
 
     private int boxFullWidth, boxHeight;
 
@@ -109,22 +116,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mninuBox.setOnClickListener(this);
 
         sharedPrefChangedListen();
-        setAlarm();
-    }
 
-    private void setAlarm(){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 22);
-        calendar.set(Calendar.MINUTE, 02);
-        calendar.set(Calendar.SECOND, 0);
-
-        if (calendar.getTime().compareTo(new Date()) < 0)
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-
-        Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
-        if(am != null) am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //If there's no previous daily notification
+        if(!sharedpreferences.contains(currentNotificationHour)) setAlarm(10, 0);
     }
 
     private void SimpleAnimation(){
@@ -191,6 +185,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         infoDialog.show();
     }
 
+    private boolean setAlarm(int newHour, int newMinute){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, newHour);
+        calendar.set(Calendar.MINUTE, newMinute);
+        calendar.set(Calendar.SECOND, 0);
+
+        if (calendar.getTime().compareTo(new Date()) < 0)
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
+        if(am != null) {
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            return true;
+        }
+        else return false;
+    }
+
+    public void updateNotificationTime(View view){
+        final MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder()
+                .setTitleText("Change the Daily Reminder Time")
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(sharedpreferences.getInt(currentNotificationHour, 10))
+                .setMinute(sharedpreferences.getInt(currentNotificationMin, 0))
+                .build();
+
+        materialTimePicker.show(getSupportFragmentManager(), "fragment_tag");
+
+        materialTimePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int newHour = materialTimePicker.getHour();
+                int newMinute = materialTimePicker.getMinute();
+
+                if(setAlarm(newHour, newMinute)) {
+                    editor.putInt(currentNotificationHour, newHour);
+                    editor.putInt(currentNotificationMin, newMinute);
+                    editor.apply();
+                }
+            }
+        });
+    };
 
     public void setStats(String count, String totalCount, TextView t, FrameLayout frameBox, String percent){
         Log.d("kand in setStats", String.valueOf(sharedpreferences.getInt(fullBarWidth, 404)));
